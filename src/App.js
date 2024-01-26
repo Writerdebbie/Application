@@ -1,25 +1,29 @@
 import Weather from "./Weather";
+
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <strong>REACT WEATHER APP.</strong>
-      </header>
-      <Weather />
-      <p>
-        This App is designed by{" "}
-        <a href="https://github.com/Writerdebbie">Gloria</a> using React and is
-        Open-sourced on
-        <a href="https://github.com/Writerdebbie"> Github</a> and hosted on{" "}
-        <a href="https://app.netlify.com/teams/writerdebbie/overview">
-          {" "}
-          Netlify
-        </a>{" "}
-      </p>
+      <div className="container">
+        <h1>Weather App</h1>
+        <Weather defaultCity="Berlin" />
+        <footer>
+          This App was designed by{" "}
+          <a href="https://gloria-page.netlify.app/" target="-blank">
+            Gloria Nnamdi
+          </a>{" "}
+          and is Open-sourced on{" "}
+          <a href="https://www.github.com/writterdebbie" target="-blank">
+            Github
+          </a>{" "}
+          and hosted on{" "}
+          <a href="https://www.netlify.com/writerdebbie" target="-blank">
+            Netlify
+          </a>
+          .
+        </footer>
+      </div>
     </div>
   );
 }
-
-export default App;

@@ -1,70 +1,97 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
-import "./App.css";
 
-export default function Weather() {
-  let [city, setCity] = useState(" ");
-  let [load, reLoad] = useState(false);
-  const [weather, setWeather] = useState({});
+import "./index.css";
+import "./Weather.css";
+
+export default function Weather(props) {
+  const [weather, setWeather] = useState({ ready: false });
   function displayWeather(response) {
-    reLoad(true);
-
+    console.log(response.data);
     setWeather({
-      temperature: response.data.main.temp,
+      ready: true,
+      temperature: Math.round(response.data.main.temp),
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
       country: response.data.sys.country,
+      city: response.data.name,
+      date: "Thursday 15:23",
     });
   }
-  function handleSubmit(event) {
-    event.preventDefault();
-    let apiKey = "094780c710fa4efd669f0df8c3991927";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
-  }
-  function updateCity(event) {
-    setCity(event.target.value);
-  }
-
-  let form = (
-    <form onSubmit={handleSubmit} className="App">
-      <input
-        autoFocus
-        className="form1"
-        type="search"
-        placeholder="Enter a city here..."
-        onChange={updateCity}
-        required
-      />
-      <button className="form2" type="submit">
-        Search{" "}
-      </button>
-    </form>
-  );
-
-  if (load) {
+  if (weather.ready) {
     return (
-      <div className="App">
-        {form}
-        <ul>
-          <li>Temperature: {Math.round(weather.temperature)}℃</li>
-          <li>Humidity: {weather.humidity}%</li>
-          <li>Wind: {weather.wind}km/h</li>
-          <li>
-            <img src={weather.icon} alt={weather.description} />
-          </li>
-          <li>Description: {weather.description}</li>
-          <li>Country Logo: {weather.country}</li>
-        </ul>
+      <div className="Weather">
+        <form>
+          <div className="row ">
+            <div className="col-9">
+              <input
+                type="search"
+                autoCapitalize="on"
+                placeholder="Enter a city here..."
+                autoFocus
+                className="search-form w-100"
+              />
+            </div>
+            <div className="col-1 w-80">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary "
+              />
+            </div>
+          </div>
+        </form>
+        <h1 className="mt-0 mb-2 fs-4">
+          {weather.city},{weather.country}
+        </h1>
+        <div className="row">
+          <div className="col-8 p-0">
+            <div className="row">
+              <div className="col-2">
+                <div className="clearfix">
+                  <img
+                    className="float-left "
+                    src={weather.icon}
+                    alt={weather.description}
+                  />
+                </div>
+              </div>
+
+              <div className="col-2">
+                <div className="float-left">
+                  <span className="temp-value">{weather.temperature}</span>
+                  <span className="temp-unit">℃</span>{" "}
+                </div>
+              </div>
+
+              <div className="col-4">
+                <ul>
+                  <li> Humidity: {weather.humidity}% </li>
+                  <li> Wind: {weather.wind}m/s</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="col-4">
+            <h1>Weather</h1>
+            <ul>
+              <li>{weather.date}</li>
+              <li className="text-capitalize">{weather.description}</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   } else {
+    const apiKey = "094780c710fa4efd669f0df8c3991927";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeather);
     return (
       <div className="App-header">
-        {form}
+        
         <ColorRing
           visible={true}
           height="80"
@@ -74,6 +101,7 @@ export default function Weather() {
           wrapperClass="color-ring-wrapper"
           colors={["#e15b64", "#f47e60", "green", "#abbd81", "blueviolet"]}
         />
+      
       </div>
     );
   }
