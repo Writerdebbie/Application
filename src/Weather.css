@@ -13,7 +13,7 @@
 
   height: 35px;
   border-radius: 5px;
-  margin: 10px 0 30px 10px;
+  margin: 10px 0 30px 0;
 }
 .Weather .btn {
   border-radius: 6px;
@@ -28,7 +28,7 @@
   line-height: 29px;
 }
 .Weather ul {
-  margin: 0;
+  margin: 0 0 0 15px;
   padding: 0;
 }
 .Weather li {
@@ -38,27 +38,30 @@
   line-height: 15px;
   list-style: none;
 }
-.Weather img {
-  height: 54px;
-  width: 64px;
+.Weather canvas {
+  height: 40px;
+  width: 40px;
   padding: 0;
   display: inline-block;
-  margin: 0;
-  top: -10px;
+  position: relative;
+  margin-left: 5px;
+  top: 2px;
 }
 .Weather .temp-value {
   font-weight: bold;
-  font-size: 64px;
-  line-height: 50px;
-  color: rgb(33, 33, 33);
+  font-size: 55px;
+  line-height: 60px;
+  color: rgb(165, 65, 65);
   margin: 0, 5px, 5px, 5px;
   top: -10px;
-  margin-left: -5px;
+  margin-left: -20px;
 }
 .Weather .temp-unit {
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 900;
   position: relative;
-  top: -32px;
+  top: -30px;
   line-height: 1;
+  color: black;
+  
 }
