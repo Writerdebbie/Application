@@ -11,8 +11,8 @@ export default function WeatherInfo(props) {
         {props.data.city}, {props.data.country}
       </h1>
       <div className="row">
-        <div className="col-8 p-0">
-          <div className="row">
+       
+      
             <div className="col-2">
               <div className="clearfix">
                 <div className="float-left">
@@ -22,23 +22,23 @@ export default function WeatherInfo(props) {
               </div>
             </div>
 
-            <div className="col-2 p-0">
+            <div className="col-3 p-0">
               <div className="float-left p-0">
                 <Temperature celsius={props.data.temperature} />
                 
               </div>
             </div>
 
-            <div className="col-4 mt-1">
+            <div className="col-3 mt-1 p-0">
               <ul>
                 <li> Feels Like: {props.data.feel}℃</li>
                 <li> Humidity: {props.data.humidity}% </li>
                 <li> Wind: {props.data.wind}m/s</li>
               </ul>
             </div>
-          </div>
-        </div>
-        <div className="col-4">
+          
+        
+        <div className="col-3">
           <h1 className="mt-0">Weather</h1>
           <ul>
             <li>
