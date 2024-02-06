@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Forecast from "./Forecast";
 import WeatherInfo from "./WeatherInfo";
 import { ColorRing } from "react-loader-spinner";
 
@@ -10,9 +11,9 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weather, setWeather] = useState({ ready: false });
   function displayWeather(response) {
-    console.log(response.data);
     setWeather({
       ready: true,
+      coordinate: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       feel: Math.round(response.data.main.feels_like),
       wind: response.data.wind.speed,
@@ -25,7 +26,7 @@ export default function Weather(props) {
     });
   }
   function Search() {
-    const apiKey = "094780c710fa4efd669f0df8c3991927";
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeather);
   }
@@ -63,10 +64,11 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weather} />
+        <Forecast cordinates={weather.coordinate} />
       </div>
     );
   } else {
-    Search() 
+    Search();
     return (
       <div className="App-header">
         <ColorRing

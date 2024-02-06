@@ -39,13 +39,12 @@
   list-style: none;
 }
 .Weather canvas {
-  height: 40px;
-  width: 40px;
+ 
   padding: 0;
   display: inline-block;
   position: relative;
   margin-left: 5px;
-  top: 2px;
+  top: 5px;
 }
 .Weather .temp-value {
   font-weight: bold;
@@ -65,3 +64,8 @@
   color: black;
   
 }
+.App-header{
+ 
+  text-align: center;
+}
+                
