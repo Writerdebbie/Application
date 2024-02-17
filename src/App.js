@@ -12,7 +12,7 @@ export default function App() {
         <footer>
           This App was designed by{" "}
           <a href="https://gloria-page.netlify.app/" target="-blank">
-            Gloria Nnamdi
+            Kolawole F. Ogunfuyi
           </a>{" "}
           and is Open-sourced on{" "}
           <a href="https://www.github.com/writterdebbie" target="-blank">
